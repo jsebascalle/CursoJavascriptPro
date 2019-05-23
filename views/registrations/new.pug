@@ -1,0 +1,21 @@
+extend ../layout
+block content
+  h1 Registrarse
+  form(action="/users",method="POST")
+    div.form-group
+      label(for="firstName") Nombre
+      input(type="text",name="firstName",class="form-control",placeholder="firstName",id="firstName")
+    div.form-group
+      label(for="lastName") Apellidos
+      input(type="text",name="lastName",class="form-control",placeholder="lastName",id="lastName")
+    div.form-group
+      label(for="email") Email
+      input(type="email",name="email",class="form-control",placeholder="email",id="email")
+    div.form-group
+      label(for="password") Contraseña
+      input(type="password",name="password",class="form-control",placeholder="Contraseña",id="password")
+    div.form-group
+      label(for="password_confirmation") Repetir Contraseña
+      input(type="password",name="password_confirmation",class="form-control",placeholder="Repetir Contraseña",id="password_confirmation")
+    input(type="submit",value="Registrar", class="btn btn-primary")
+    a(href="/login",class="btn btn-info") Login
