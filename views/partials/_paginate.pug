@@ -1,0 +1,14 @@
+if paginate.hasPreviousPages || paginate.hasNextPages(pageCount)
+  nav.navigation.well-sm#pagination
+    ul.pagination
+      if paginate.hasPreviousPages
+        li.previous.page-item
+          a(href=paginate.href(true)).page-link.prev &laquo;
+      if pages
+        each page in pages
+          - var active = (page.number === pageActive ? 'active' : null)
+          li(class=`page-item ${active}`)
+            a.page-link.btn.btn-default(href=page.url)= page.number
+      if paginate.hasNextPages(pageCount)
+        li.next.page-item
+          a(href=paginate.href()).page-link.next &raquo;

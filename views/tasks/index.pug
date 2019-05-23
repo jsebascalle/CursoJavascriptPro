@@ -1,0 +1,24 @@
+extend ../layout
+block content
+	h1 Tareas
+		a(href="/tasks/create",class="btn btn-primary float-right") Crear
+	table("class"="table table-striped")
+		thead
+			tr
+				th Nombre Tarea
+				th
+		tbody
+			each task in tasks 
+				tr
+					td= task.description
+					td
+						.btn-group
+							form(action="/tasks/"+task.id, method="POST")
+									input(type="hidden",value="DELETE",name="_method")
+									input(type="submit",value="Eliminar",class="btn btn-danger")
+							a(href="/tasks/"+task.id).btn.btn-info Ver
+							a(href="/tasks/"+task.id+"/edit").btn.btn-primary Editar
+			else
+				tr
+					td(colspan="2") No hay registros
+	include ../partials/_paginate
