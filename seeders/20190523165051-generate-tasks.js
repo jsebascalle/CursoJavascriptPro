@@ -1,13 +1,19 @@
 'use strict';
-
+const faker = require("faker");
 module.exports = {
   up: (queryInterface, Sequelize) => {
-      return queryInterface.bulkInsert('tasks', [{
-        description: 'Primer tarea',
-        id: 1,
-        createdAt : new Date(),
-        updatedAt : new Date()
-      }], {});
+      var newData = [];
+
+      for (let i = 1; i < 30; i++) {
+          const seedData = {
+            description: "TAREA "+i,
+            createdAt : new Date(),
+            updatedAt : new Date()
+          };
+          newData.push(seedData);
+      }
+
+      return queryInterface.bulkInsert('tasks', newData);
   },
 
   down: (queryInterface, Sequelize) => {

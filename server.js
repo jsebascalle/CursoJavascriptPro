@@ -10,7 +10,7 @@ app.use('/assets', express.static(__dirname + '/public',{}));
 app.set('views', './views');
 app.set('view engine', 'pug');
 // keep this before all routes that will use pagination
-app.use(paginate.middleware(3, 3));
+app.use(paginate.middleware(10,10));
 app.use(bodyParser.urlencoded({extended :true}));
 app.use(methodOverride(function (req, res) {
   if (req.body && typeof req.body === 'object' && '_method' in req.body) {

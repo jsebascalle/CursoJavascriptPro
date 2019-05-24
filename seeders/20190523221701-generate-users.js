@@ -11,7 +11,8 @@ module.exports = {
                 lastName: faker.name.lastName(),
                 password: faker.internet.password(),
                 createdAt: new Date(),
-                updatedAt: new Date()
+                updatedAt: new Date(),
+                id: i,
             };
             newData.push(seedData);
         }
