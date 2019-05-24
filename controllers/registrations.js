@@ -1,17 +1,21 @@
 const User = require("../models").User; //Importar el modelo
-const paginate = require('express-paginate');
-
-
 module.exports = {
-  register: function(req,res){
-    res.render('registrations/new');
+  create: function(req,res){
+    res.render('registrations/create');
   },
   store: function(req,res){
-      /*Task.create({description: req.body.description}).then(result =>{
-        res.redirect('/tasks/');
+      User.create({
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        password: req.body.password,
+        password_confirmation: req.body.password_confirmation
+        }).then(result =>{
+        console.log(result);
+        res.redirect('/signup/');
       }).catch(err =>{
         console.log(err);
         res.json(err)
-      });*/
+      });
   }
 };

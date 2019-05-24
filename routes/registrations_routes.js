@@ -2,6 +2,10 @@ const express = require("express");
 const RegistrationsController = require("../controllers/registrations");
 let router = express.Router();
 
-router.get('/signup',RegistrationsController.register);
+
+router.route('/signup')
+        .get(RegistrationsController.create)
+        .post(RegistrationsController.store);
+
 
 module.exports = router;

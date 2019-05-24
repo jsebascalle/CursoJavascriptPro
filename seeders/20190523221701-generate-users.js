@@ -1,5 +1,6 @@
 'use strict';
 const faker = require("faker");
+const bcrypt = require("bcrypt");
 module.exports = {
   up: (queryInterface, Sequelize) => {
         var newData = [];
@@ -9,10 +10,9 @@ module.exports = {
                 email: faker.internet.email(),
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName(),
-                password: faker.internet.password(),
+                password_hash: bcrypt.hashSync("12345678",10),
                 createdAt: new Date(),
-                updatedAt: new Date(),
-                id: i,
+                updatedAt: new Date()
             };
             newData.push(seedData);
         }

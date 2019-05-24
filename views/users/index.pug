@@ -1,0 +1,29 @@
+extend ../layout
+block content
+	h1 Usuarios
+	table("class"="table table-striped")
+		thead
+			tr
+				th Nombres
+				th Apellidos
+				th correo
+				th password hash
+				th
+		tbody
+			each user in users 
+				tr
+					td= user.firstName
+					td= user.lastName
+					td= user.email
+					td= user.password_hash
+					td
+						.btn-group
+							form(action="/users/"+user.id, method="POST")
+									input(type="hidden",value="DELETE",name="_method")
+									input(type="submit",value="Eliminar",class="btn btn-danger")
+							a(href="/users/"+user.id).btn.btn-info Ver
+							a(href="/users/"+user.id+"/edit").btn.btn-primary Editar
+			else
+				tr
+					td(colspan="5") No hay registros
+	include ../partials/_paginate

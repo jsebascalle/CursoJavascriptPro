@@ -2,8 +2,10 @@ const express = require("express");
 const paginate = require('express-paginate');
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
-const tasksRoutes = require("./routes/tasks_routes");
+const authRoutes = require("./routes/auth_routes");
 const registrationsRoutes = require("./routes/registrations_routes");
+const usersRoutes = require("./routes/users_routes");
+const tasksRoutes = require("./routes/tasks_routes");
 const app = express();
 
 app.use('/assets', express.static(__dirname + '/public',{}));
@@ -21,8 +23,11 @@ app.use(methodOverride(function (req, res) {
   }
 }));
 //RUTAS
-app.use(tasksRoutes);
+app.use(authRoutes);
 app.use(registrationsRoutes);
+app.use(usersRoutes);
+app.use(tasksRoutes);
+
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
