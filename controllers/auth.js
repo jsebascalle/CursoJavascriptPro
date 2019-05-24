@@ -4,11 +4,25 @@ module.exports = {
     res.render('auth/signin');
   },
   login: function(req,res){
-    User.login(req.body.email,req.body.password).then(function(result){
-      res.json(result);
-    }).catch(function(err){
+    User.login(req.body.email,req.body.password)
+    .then(user=>{
+      if(user){
+        req.session.userId = user.id;
+        res.redirect("/dashboard");
+      }else{
+        res.json(user);
+      }
+    })
+    .catch(function(err){
       console.log(err);
       res.json(err);
     });
+  },
+  logout: function(req, res) {
+      if (req.session.userId) {
+        req.session.destroy(function(){
+            res.redirect('/') ;
+        });
+      }
   }
 };

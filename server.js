@@ -2,10 +2,9 @@ const express = require("express");
 const paginate = require('express-paginate');
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
-const authRoutes = require("./routes/auth_routes");
-const registrationsRoutes = require("./routes/registrations_routes");
-const usersRoutes = require("./routes/users_routes");
-const tasksRoutes = require("./routes/tasks_routes");
+const session = require('express-session');
+const routes = require("./routes/routes");
+const findUserMiddleware = require("./middlewares/find_user");
 const app = express();
 
 app.use('/assets', express.static(__dirname + '/public',{}));
@@ -22,12 +21,20 @@ app.use(methodOverride(function (req, res) {
     return method
   }
 }));
-//RUTAS
-app.use(authRoutes);
-app.use(registrationsRoutes);
-app.use(usersRoutes);
-app.use(tasksRoutes);
 
+app.use(session({
+  secret:"shfjsdhafmkasdfjsdfnasfuaysufyuasyfuansyufyaufynasfj",
+  resave:false,
+  saveUninitialized:false
+}));
+
+app.use(findUserMiddleware);
+//  Connect all our routes to our application
+app.use('/', routes);
+
+app.get('/dashboard',function(req,res){
+  res.render('dashboard/index',{user:req.user})
+});
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

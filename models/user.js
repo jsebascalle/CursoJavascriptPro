@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       email : email
     }}).then(function(user){
       if (!user) return null;
-      console.log(user);
+    
       return user.validatePassword(password).then(valid => valid ? user :null);
     });
   };

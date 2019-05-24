@@ -11,7 +11,6 @@ module.exports = {
         password: req.body.password,
         password_confirmation: req.body.password_confirmation
         }).then(result =>{
-        console.log(result);
         res.redirect('/signup/');
       }).catch(err =>{
         console.log(err);
