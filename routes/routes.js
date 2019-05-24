@@ -8,7 +8,12 @@ let router = express.Router();
 
 router.use(authRoutes);
 router.use(registrationsRoutes);
-router.use(usersRoutes);
-router.use(tasksRoutes);
+router.use('/app',usersRoutes);
+router.use('/app',tasksRoutes);
+
+
+router.get('/app/dashboard',function(req,res){
+  res.render('dashboard/index',{user:req.user})
+});
 
 module.exports = router;

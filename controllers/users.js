@@ -38,7 +38,7 @@ module.exports = {
   },
   destroy: function(req,res){
     User.destroy({where:{id:req.params.id}}).then(result => {
-        res.redirect('/users/');
+        res.redirect('/app/users/');
     });
   }
 };

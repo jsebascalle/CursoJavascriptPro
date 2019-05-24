@@ -32,7 +32,7 @@ module.exports = {
   },
   store: function(req,res){
       Task.create({description: req.body.description}).then(result =>{
-        res.redirect('/tasks/');
+        res.redirect('/app/tasks/');
       }).catch(err =>{
         console.log(err);
         res.json(err)
@@ -42,7 +42,7 @@ module.exports = {
       Task.update({description: req.body.description},{where:{
         id:req.params.id
       }}).then(result =>{
-        res.redirect('/tasks/'+req.params.id);
+        res.redirect('/app/tasks/'+req.params.id);
       }).catch(err =>{
         console.log(err);
         res.json(err)
@@ -50,7 +50,7 @@ module.exports = {
   },
   destroy: function(req,res){
     Task.destroy({where:{id:req.params.id}}).then(result => {
-        res.redirect('/tasks/');
+        res.redirect('/app/tasks/');
     });
   }
 };

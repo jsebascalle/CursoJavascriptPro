@@ -8,7 +8,7 @@ module.exports = {
     .then(user=>{
       if(user){
         req.session.userId = user.id;
-        res.redirect("/dashboard");
+        res.redirect("/app/dashboard");
       }else{
         res.json(user);
       }

@@ -5,11 +5,11 @@ nav(class="navbar navbar-expand-lg navbar-light bg-light")
   div(class="collapse navbar-collapse" id="navbarSupportedContent")
     ul(class="navbar-nav mr-auto")
       li(class="nav-item active")
-        a(class="nav-link" href="/dashboard") Home
+        a(class="nav-link" href="/app/dashboard") Home
       li(class="nav-item")
-        a(class="nav-link" href="/users") Usuarios
+        a(class="nav-link" href="/app/users") Usuarios
       li(class="nav-item")
-        a(class="nav-link" href="/tasks") Tareas
+        a(class="nav-link" href="/app/tasks") Tareas
       li(class="nav-item")
         form(action="/logout/", method="POST")
           input(type="hidden",value="DELETE",name="_method")
