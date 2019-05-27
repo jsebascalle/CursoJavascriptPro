@@ -33,9 +33,7 @@ app.use('/app',authUserMiddleware);
 //  Connect all our routes to our application
 app.use('/', routes);
 
-let server = app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+let server = app.listen(process.env.PORT || 3000);
 let io = socketio(server);
 let sockets= {};
 let usersCount = 0;
