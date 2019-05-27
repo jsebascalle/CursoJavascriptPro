@@ -1,11 +1,14 @@
 extend ../dashboard/layout
 block content
   h1 Editar Tarea
-  form(action="/tasks/"+task.id,method="POST")
+  form(action="/app/tasks/"+task.id,method="POST")
     input(type="hidden",value="PUT",name="_method")
     div.form-group
       label(for="description") Descripcion
       textarea(name="description",class="form-control",id="description")= task.description
+    div.form-group
+      label(for="categories") Categorías
+      input(type="text",name="categories",class="form-control",id="categories",placeholder="1,2,3")
     input(type="submit",value="Guardar", class="btn btn-primary")
-    a(href="/tasks",class="btn btn-primary") Lista de tareas
-    a(href="/tasks/create",class="btn btn-primary") crear tarea
+    a(href="/app/tasks",class="btn btn-primary") Lista de tareas
+    a(href="/app/tasks/create",class="btn btn-primary") crear tarea

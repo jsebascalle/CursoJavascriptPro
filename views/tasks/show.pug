@@ -2,5 +2,8 @@ extend ../dashboard/layout
 block content
   h1 Ver Tarea
   h3= task.description
-  a(href="/tasks",class="btn btn-primary") Lista de tareas
-  a(href="/tasks/create",class="btn btn-primary") crear tarea
+  ul
+    each category in task.categories
+      li= category.title
+  a(href="/app/tasks",class="btn btn-primary") Lista de tareas
+  a(href="/app/tasks/create",class="btn btn-primary") crear tarea

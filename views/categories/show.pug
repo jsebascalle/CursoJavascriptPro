@@ -1,0 +1,6 @@
+extend ../dashboard/layout
+block content
+  h1 Ver Categoría
+  h3= category.title - category.color
+  a(href="/app/category",class="btn btn-primary") Lista de categorías
+  a(href="/app/category/create",class="btn btn-primary") crear categoría

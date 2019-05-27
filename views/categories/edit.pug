@@ -1,0 +1,13 @@
+extend ../dashboard/layout
+block content
+  h1 Edtar Categoría
+  form(action="/app/category/"+category.id,method="POST")
+    input(type="hidden",value="PUT",name="_method")
+    div.form-group
+      label(for="title") Title
+      input(type="text",name="title",value=category.title,class="form-control",id="title")
+    div.form-group
+      label(for="color") Color
+      input(type="color",name="color",value=category.color,class="form-control",id="color")
+    input(type="submit",value="Guardar", class="btn btn-primary")
+    a(href="/app/category",class="btn btn-primary") Lista de tareas

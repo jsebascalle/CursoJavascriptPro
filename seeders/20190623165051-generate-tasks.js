@@ -8,7 +8,8 @@ module.exports = {
           const seedData = {
             description: "TAREA "+i,
             createdAt : new Date(),
-            updatedAt : new Date()
+            updatedAt : new Date(),
+            userId: faker.random.number({min:1, max:19})
           };
           newData.push(seedData);
       }

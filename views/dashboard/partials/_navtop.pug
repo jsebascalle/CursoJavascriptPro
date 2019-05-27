@@ -11,6 +11,8 @@ nav(class="navbar navbar-expand-lg navbar-light bg-light")
       li(class="nav-item")
         a(class="nav-link" href="/app/tasks") Tareas
       li(class="nav-item")
+        a(class="nav-link" href="/app/category") Categorías
+      li(class="nav-item")
         form(action="/logout/", method="POST")
           input(type="hidden",value="DELETE",name="_method")
           input(type="submit",value="Cerrar sesión",class="btn btn-link")

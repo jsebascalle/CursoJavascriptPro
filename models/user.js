@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       email : email
     }}).then(function(user){
       if (!user) return null;
-    
+
       return user.validatePassword(password).then(valid => valid ? user :null);
     });
   };
@@ -62,7 +62,16 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Task, {as:'tasks'});
+    User.addScope('allAsso', {
+        include: [{
+          as:'tasks'
+        }/*, {
+          model: models.SubModel2 ->Para retornar todas las asociaciones
+        }*/ ]
+      });
+
+
   };
   User.beforeCreate(function(user,options) {
     return new Promise((res, rej)=>{

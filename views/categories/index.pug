@@ -1,0 +1,25 @@
+extend ../dashboard/layout
+block content
+	h1 Categorías
+		a(href="/app/category/create",class="btn btn-primary float-right") Crear
+	table("class"="table table-striped")
+		thead
+			tr
+				th Titulo
+				th Color
+				th
+		tbody
+			each category in categories 
+				tr
+					td= category.title
+					td= category.color
+					td
+						.btn-group
+							form(action="/app/category/"+category.id, method="POST")
+									input(type="hidden",value="DELETE",name="_method")
+									input(type="submit",value="Eliminar",class="btn btn-danger")
+							a(href="/app/category/"+category.id).btn.btn-info Ver
+							a(href="/app/category/"+category.id+"/edit").btn.btn-primary Editar
+			else
+				tr
+					td(colspan="2") No hay registros
