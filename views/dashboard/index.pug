@@ -1,3 +1,18 @@
 extend ./layout
 block content
 	h3= user.email
+	p Usuarios 
+		span#connected
+	script(src="/socket.io/socket.io.js")
+	script.
+		socket = io.connect(window.location.origin,{query:'loggeduser=#{user.id}'});
+		console.log("imprimiendo");
+		socket.on('count_updated',function(data){
+			console.log(data);
+			document.querySelector("#connected").innerHTML = data.count;
+		});
+		
+		socket.on('new_task',function(data){
+			console.log(data);
+		});
+	

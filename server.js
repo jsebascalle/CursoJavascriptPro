@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 const routes = require("./routes/routes");
 const authUserMiddleware = require("./middlewares/auth_user");
+const socketio = require("socket.io")
 const app = express();
 
 app.use('/assets', express.static(__dirname + '/public',{}));
@@ -32,6 +33,44 @@ app.use('/app',authUserMiddleware);
 //  Connect all our routes to our application
 app.use('/', routes);
 
-app.listen(3000, function () {
+let server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
+let io = socketio(server);
+let sockets= {};
+let usersCount = 0;
+
+io.on('connection',function(socket){
+  //obtener id usuario loquedao
+  let userId = socket.request._query.loggeduser;
+  if(userId) sockets[userId] = socket;
+  console.log(sockets);
+  //notificar tarea nueva
+  socket.on('new_task',function(data){
+    //solo notifca al usuario que creo la tarea
+    if (data.userId) {
+      let userSocket = sockets[data.userId];
+      if(!userSocket) return ;
+
+      userSocket.emit('new_task',data);
+    }
+  });
+  //cantidad de usuarios
+  usersCount++;
+  io.emit('count_updated',{count:usersCount});
+
+
+  //desconectar
+  socket.on('disconnect',function(){
+
+    Object.keys(sockets).forEach(userId=>{
+      let s = sockets[userId];
+      if(s.id == socket.id) sockets[userId] = null;
+    });
+
+    usersCount--;
+    io.emit('count_updated',{count:usersCount});
+  });
+});
+
+const ioclient = require("./realtime/client");
