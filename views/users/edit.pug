@@ -1,1 +1,15 @@
 extend ../dashboard/layout
+block content
+  h1 Editar Usuario
+  form(action="/signup/",method="POST")
+    div.form-group
+      label(for="firstName") Nombre
+      input(type="text",name="firstName", value=user.firstName,class="form-control",placeholder="firstName",id="firstName")
+    div.form-group
+      label(for="lastName") Apellidos
+      input(type="text",name="lastName", value=user.lastName,class="form-control",placeholder="lastName",id="lastName")
+    div.form-group
+      label(for="email") Email
+      input(type="email",name="email", value=user.email,class="form-control",placeholder="email",id="email")
+    input(type="submit",value="Guardar", class="btn btn-primary")
+    a(href="/app/users",class="btn btn-info") Lista de usuarios

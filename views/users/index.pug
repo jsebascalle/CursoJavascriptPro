@@ -18,11 +18,11 @@ block content
 					td= user.password_hash
 					td
 						.btn-group
-							form(action="/users/"+user.id, method="POST")
+							form(action="/app/users/"+user.id, method="POST")
 									input(type="hidden",value="DELETE",name="_method")
 									input(type="submit",value="Eliminar",class="btn btn-danger")
-							a(href="/users/"+user.id).btn.btn-info Ver
-							a(href="/users/"+user.id+"/edit").btn.btn-primary Editar
+							a(href="/app/users/"+user.id).btn.btn-info Ver
+							a(href="/app/users/"+user.id+"/edit").btn.btn-primary Editar
 			else
 				tr
 					td(colspan="5") No hay registros

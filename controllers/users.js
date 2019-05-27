@@ -27,14 +27,17 @@ module.exports = {
     });
   },
   update: function(req,res){
-      /*User.update({description: req.body.description},{where:{
-        id:req.params.id
-      }}).then(result =>{
-        res.redirect('/tasks/'+req.params.id);
+      User.update({
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName
+      },{skip:["password"],transaction: t, where:{id:req.params.id}  
+      }).then(result =>{
+        res.redirect('/app/users/'+req.params.id+'/edit');
       }).catch(err =>{
         console.log(err);
         res.json(err)
-      });*/
+      });
   },
   destroy: function(req,res){
     User.destroy({where:{id:req.params.id}}).then(result => {
