@@ -62,16 +62,14 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function(models) {
-    User.hasMany(models.Task, {as:'tasks', foreingKey: "userId"});
-    User.addScope('allAsso', {
+    User.hasMany(models.Task, {as:'tasks', foreignKey: "userId"});
+    /*User.addScope('allAsso', {
         include: [{
           as:'tasks'
-        }/*, {
+        }, {
           model: models.SubModel2 ->Para retornar todas las asociaciones
-        }*/ ]
-      });
-
-
+        }]
+      });*/
   };
   User.beforeCreate(function(user,options) {
     return new Promise((res, rej)=>{
