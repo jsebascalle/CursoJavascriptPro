@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.associate = function(models) {
-    User.hasMany(models.Task, {as:'tasks'});
+    User.hasMany(models.Task, {as:'tasks', foreingKey: "userId"});
     User.addScope('allAsso', {
         include: [{
           as:'tasks'
