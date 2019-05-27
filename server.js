@@ -23,11 +23,17 @@ app.use(methodOverride(function (req, res) {
   }
 }));
 
-app.use(session({
+let sessionConfig = {
   secret:"shfjsdhafmkasdfjsdfnasfuaysufyuasyfuansyufyaufynasfj",
   resave:false,
   saveUninitialized:false
-}));
+};
+
+if(process.env.NODE_ENV && process.env.NODE_ENV == 'production'){
+  sessionConfig['store'] = new (require("connect-pg-simple")(session))();
+}
+
+app.use(session(sessionConfig));
 
 app.use('/app',authUserMiddleware);
 //  Connect all our routes to our application
